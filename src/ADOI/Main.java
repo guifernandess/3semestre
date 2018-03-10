@@ -47,7 +47,11 @@ public class Main {
                     d.setMarca(marca);
                     d.setAno(anoVeiculo);
 
-                    b.inserirPrimeiro(d);
+                    try {
+                        b.inserirPrimeiro(d);
+                    } catch (Exception e) {
+                        System.out.println("Erro");
+                    }
 
                     break;
                 case "2":
@@ -61,19 +65,33 @@ public class Main {
                     e.setModelo(Modelo);
                     e.setMarca(Marca);
                     e.setAno(AnoVeiculo);
-                    b.inserirUltimo(e);
+
+                    try {
+                        b.inserirUltimo(e);;
+                    } catch (Error ee) {
+                        System.out.println("Erro");
+                    }
+
                     break;
                 case "3":
                     System.out.println("3");
+                    System.out.println("Digite o modelo do veiculo á ser Pesquisado: ");
+                    String pesquisa = console.next();
+
+                    b.pesquisarNo(pesquisa);
                     break;
                 case "4":
                     b.imprimirLista();
                     break;
                 case "5":
                     System.out.println("5");
+                    System.out.println("Digite o modelo do veiculo á ser Removido: ");
+                    String remov = console.next();
+
+                    b.removerNo(remov);
                     break;
                 case "6":
-                    System.out.println("6");
+                    b.removerTodos();
                     break;
                 default:
                     System.out.println("Invalido");
