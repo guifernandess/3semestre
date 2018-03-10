@@ -57,62 +57,90 @@ public class listaSimples {
         novoNo.setProx(this.prim);
         this.prim = novoNo;
         this.qtdNo++;
+
+        System.out.println("Inserido no começo com Sucesso");
     }
 
-    public void inserirUltimo(carros c){
+    public void inserirUltimo(carros c) {
         No novoNo = new No(c);
         if (this.isEmpty()) {
             this.ult = novoNo;
-        } else 
+        } else {
             this.ult.setProx(novoNo);
+        }
         this.ult = novoNo;
         this.qtdNo++;
+        System.out.println("Inserido no ultimo com Sucesso");
     }
-    
+
     public boolean removerNo(String modelo) {
         No atual = this.prim;
         No anterior = null;
-        if (this.isEmpty())
+        if (this.isEmpty()) {
             return false;
-        else {
-            while (atual != null && (!atual.getC().getModelo().equals(modelo))){
+        } else {
+            while (atual != null && (!atual.getC().getModelo().equals(modelo))) {
                 anterior = atual;
                 atual = atual.getProx();
             }
-            if (atual == prim){
-                if(this.prim == this.ult)
-                        this.ult = null;
+            if (atual == prim) {
+                if (this.prim == this.ult) {
+                    this.ult = null;
+                }
                 this.prim = this.prim.getProx();
-            }
-            else {
-                if (atual == ult)
+            } else {
+                if (atual == ult) {
                     this.ult = anterior;
+                }
                 anterior.setProx(atual.getProx());
             }
         }
-        this.qtdNo --;
+        this.qtdNo--;
         return true;
     }
-    
-    public String pesquisarNo (String modelo){
+
+    public void removerTodos() {
+        No atual = this.prim;
+        No anterior = null;
+        if (this.isEmpty()) {
+        } else {
+            while (atual != null) {
+                anterior = atual;
+                atual = null;
+            }
+            if (atual == prim) {
+                if (this.prim == this.ult) {
+                    this.ult = null;
+                }
+                this.prim = this.prim.getProx();
+            } else {
+                if (atual == ult) {
+                    this.ult = anterior;
+                }
+            }
+        }
+        System.out.println("removido");
+    }
+
+    public String pesquisarNo(String modelo) {
         String msg = "";
         No atual = this.prim;
-        while (atual != null && (!atual.getC().getModelo().equals(modelo))){
+        while (atual != null && (!atual.getC().getModelo().equals(modelo))) {
             atual = atual.getProx();
         }
-        return msg =    "Modelo: "+atual.getC().getModelo() + "\n"+
-                        "Marca: "+atual.getC().getMarca()  + "\n"+
-                        "Ano: "+atual.getC().getAno();
+        return msg = "Modelo: " + atual.getC().getModelo() + "\n"
+                + "Marca: " + atual.getC().getMarca() + "\n"
+                + "Ano: " + atual.getC().getAno();
     }
-    
-    public String imprimirLista(){
+
+    public String imprimirLista() {
         String msg = "";
-        if (this.isEmpty())
+        if (this.isEmpty()) {
             msg = "Lista Vazia";
-        else {
+        } else {
             No atual = this.prim;
-            while (atual != null){
-                msg += atual.getC().getModelo()+"--->";
+            while (atual != null) {
+                msg += atual.getC().getModelo() + "--->";
                 atual = atual.getProx();
             }
         }
